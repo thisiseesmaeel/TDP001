@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <style>
+      body {
+	  background-color: lightblue;
+      }
+
+      h1 {
+	  color: #ff0000;
+	  text-align: center;
+      }
+
+    </style>
+    <title> Ismails Blog </title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <main>
+      <h1>Välkommen till min blogg</h1>
+      <hr>
+      <h2>Kurser</h2>
+      <ul>
+	<li><a href="#TDP001">Handhavande av Datormiljö TDP001</a></li>
+	<li>Imperativ Programmering TDP002</li>
+	<li><a href="#TDP003">Projekt: Egna datormiljön TDP003</a></li>
+      </ul>
+      <h2 id="TDP001">Handhavande av Datormiljö TDP001</h2>
+      <h3 id="uppgiften"> Uppgift1 : Vecka 35 </h3>
+      <p>För att komma igång med Gitlab så fick jag skapa ssh-nyckeln vilket jag gjorde genom att köra <b>"ssh-keygen -t rsa -C "GitLab" -b 4096"</b> programmet på terminalen på min dator. Nästa steg var att kopiera den publika nyckeln från <b>.ssh</b> mappen där nyckeln var sparades.
+	Jag öppnade <b><a href="https://gitlab.liu.se">Gitlab</a></b> och hittade Nytt projekt knappen på Gitlab dashboard för att skapa ett nytt projekt. Sedan använde jag <b>"git init"</b> kommandot på den katalagen jag har sparat min blogg i efter att jag gick in på servern.
+	Sedan på samma katalag laddade jag ner mitt projekt från gitlab till den katalogen genom att köra:
+	<br><pre><b>git clone git@gitlab.liu.e:saysa289/uppgift1.git</b></pre>
+	<br>Efter den la jag till en fil med <b>"README.md"</b> namnet via <b> "git add README.md"</b>, sedan skrev jag ett kommentar via <pre><b>"git commit -am "add README".</b></pre><br> Till slut pushade jag repositoryn tillbaka till gitlab genom att köra ,<b>"git push -u origin master"</b> så hela innehållet syns på gitlab med.<br>Nu för att mina andra filer ska synas på Gitlab, öppnade jag TDP001 katalogen, sedan: <pre><b>"git remote add origin git@gitlab.liu.se:saysa289/uppgift1.git"</b></pre> för att få tillgång till Gitlab och sedan <b>"git add ."</b> för att lägga till alla filerna i katalogen. I slutet så committade jag med <b>git commit -m "first commit"</b> och pushade med <pre><b>git push -u origin master</b></pre>
+      <p><b><a href="https://gitlab.liu.se/saysa289/uppgift1.git">Länk till mitt projekt</a></b></p><br>
+      <p style="text-align:center">===============================================================</p>
+      <h3> Uppgift 2: Vecka 36 </h3>
+      <p>Först och främst laddade jag ner resultat texten som stod i uppgiften och nämnde den <b>resultat.txt</b> för att kunna köra mina program på den.
+	<br><b>Uppgift 1</b> I denna uppgift så använde jag mig programmet <b>grep on resultat.txt</b> då söker programmet efter tecknen <b>"on"</b> genom alla rader med namn.<br>
+	<br><b>Uppgift 2</b> I denna uppgift använde jag av <b>grep</b> och <b>Pipe</b> för att jag behövde skicka mina indata från grep till ett annat data. För att kunna hitta de första efternamnen som <b><i>INTE</i></b> avslutas med "son" så körde programmet : <b>grep -v son resultat.txt | head -n5</b> I detta program använde jag <b>"-v"</b> för att hitta motsatsen alltså söka de namnen som inte innehåller <b>son</b> i sig, sedan skickade jag resultatet till <i>head</i> med argumentet <i>-n5</i> så att det söker till och med rad <b>5</b>.
+	<br><b>Uppgift 3</b> I denna uppgift så använde jag <b>grep</b> och <b>\.so</b> för att räkna med alla filer med <i>.so</i> filformatet. För att kunna innesluta resultatet att bli som vi blev ombett så använde jag <b>cut</b> och dess flaggor <i>-d</i> och <i>-f</i>. I slutet skrev jag följande programmet:
+	<br><pre><b>ls /usr/lib | grep '\.so' | cut -d . -f1 >socalledfile.txt</b></pre>
+	<br><b>Uppgift 4</b> I denna uppgift körde jag programmet: <b>grep -c -i an resultat.txt</b>. Jag använde <b>-c</b> för att räkna bokstäverna <b>"an"</b>.
+	<br><b>Uppgift 5</b> Efter att jag skapade mitt latex dokument: <b>xelatex -pdf TDP003-mall.tex</b> , ändrade jag sidohuvud och sidfotet till mitt namn i det kompilerade dokumentet och laddade upp det: <b>scp /Downloads/TDP003-mall.tex saysa289@ssh.edu.liu.se</b><br>
+	<br>
+      <p><b><a href="https://php-web.edu.liu.se/saysa289/TDP001/TDP003-mall.pdf">Länk till mallen</a></b></p><br>
+      <p style="text-align:center">===============================================================</p>    
+      <h3>Uppgift 3: Vecka 37 </h3>
+      <p>
+	<b>Uppgift 1</b> För att kunna skriva på formatet <b>FEN</b> som beskrevs i uppgift ett, Jag skrev:
+	<br><pre><b>[a-z]{2,5}\d{2,3}</b></pre>
+	<br>Det ska fånga vilket LiU-ID som helst som innehåller små bokstäver med max 5 tecken långt och två till tre tecken långt siffror. I detta fall använde jag mitt eget ID vilket är <b>saysa289</b>.
+	<br><b>Uppgift 2</b> I denna uppgift så skulle man skriva ett mönster som kan fånga datumet skriven i ISO-format (YYYY-MM-DD). Det mönstret jag skrev:
+	<br><pre><b>[0-9]{4}-[0-9]{2}-[0-9]{2}</b></pre>
+	<br><b>Uppgift 3</b> För att kunna kontrollera datumets giltighet med regex, jag utökade regexen på föregående uppgiften till:
+	<br><pre><b>([0-9]{4}-(0[1-9]|1[012])-(0[0-9]|2[0-9]|3[01]))</b></pre>
+	<br>På så sätt begränsade jag dagen och månaden så att det fångar bara giltiga dagar (upp till 31) och månader (upp till 12).
+	<br><b>Uppgift 4</b> I denna uppgift använde jag mig min egen blogg som ett exempel. Jag skrev följande koden för att lösa problemet:<br>
+	<pre><b>
+	    import re
+            with open(&#39;bloggen.html&#39;, &#39;r&#39;) as f:
+            kalla = f.read()    
+            result = re.findall(&#39;&lt;\w+&gt;|&lt;\/\w+&gt;&#39;, kalla)
+	    print(result)
+	</b></pre>
+	I koden ovanför, har jag först importerat regex från pythons bibliotek, och sedan öppnade filen lokalt på min dator via <em>(with sats)</em>.<br>
+	<br>
+	<b>Uppgift 5</b> <b>HTTP</b> har skapats för att möjliggöra kommunikationer mellan klienter och servrar. HTTP request&#39;s funkar så att man som t.ex klient begära datan från servern och det kan göras via olika metoder.<br>
+	<br>
+      <p><b>Uppgift 6</b> Skillnaden mellan <b>GET</b> och <b>POST</b> är att GET används för att begära data från en specifik källa medans POST används för att skicka data till en server för att uppdatera källan. En annan skillnad är att GET request har begränsad längd medans POST request har obegränsade längder. GET request kan bli cachad medans POST request blir aldrig cachad.</p>
+      <p style="text-align:center">===============================================================</p>
+      <h3>Uppgift 4: Vecka 38 </h3>
+      <p>
+	<b>Uppgift 1</b> För att lista alla python-filer skrev jag följande kommandot:<br>
+	<br><pre><b>find . -type f -executable -name &#34;&#42;.py&#34;</b></pre>
+	<br>I kommandot ovan, använde jag <i>&#39;-type f&#39;</i> för att hitta alla vanliga filer och <i>&#39;-executable&#39;</i> för att hitta körbara filer samt <i>&#39; -name &#34;&#42;.py&#34; &#39;</i> för att matcha python-filer.<br>
+	<br>
+	<b>Uppgift 2</b> För att kunna hitta alla filer som är större än 5Mb och ligger i min hemkatalog, som föregående uppgiften använde jag <i>&#39;-type f&#39;</i> för att hitta vanliga filer och <i>&#39;-size +5M&#39;</i> för att hitta filer större än 5Mb. Kommandot jag skrev:
+	<br><pre><b>find ~/ -type f -size +5M</b></pre>
+	<br><b>Uppgift 3</b> Jag började med att öppna filen <i>resultat.txt</i> med <b>Emacs</b> genom att skriva följande på terminalen:
+	<pre><b>emacs resultat.txt</b></pre>
+	<br>Sedan för att skapa mitt macro använde jag <b><em>&#39;C-x (&#39;</em></b>(funkar med F3 också) för att börja skapa macrot. Då skrev tryckte på <b><em>&#39;M-f&#39;</em></b> två gånger för att flytta två ord framåt alltså flytta till efter efternamn i listan. För att ta bort resten av radet alltså de siffrorna framför namnen körde jag <b><em>&#39;C-k&#39;</em></b>, sedan för att avsluta skapa eller spara macrot tryckte jag <b><em>&#39;C-x )&#39; eller &#39;F4&#39;</em></b>. Nu för att testa eller utföra macrot använde jag <b><em>&#39;C-x e&#39;</em></b>, efter att använda det här kommandot funkar det också att trycka bara <b><em>&#39;e&#39;</em></b> för att macrot ska upprepas.<br>
+	<br>
+      <p style="text-align:center">===============================================================</p>
+      <h3>Terminaluppgiften</h3>
+      <h4>Kataloger och filer</h4>
+      Först så skriver man <pre><b>cd</b></pre> i terminalen för att gå till hemkatalogen. Nu för att skapa katalogerna <b>TDP004</b> och <b>lab1</b> använde jag följande:<br>
+      <br>
+      <pre><b>mkdir -p TDP004/lab1</b></pre><br>
+      <br>
+      Nu för att skriva någonting i <i>README.md</i> filen skrev jag följande:<br>
+      <br>
+      <pre><b>echo &#39;Det här är bara ett test&#39; &gt; README.md</b></pre>
+      <br>
+      För att skapa ett repository på <i>Gitlab</i> gjorde jag precis som jag gjorde i <a href="#uppgiften">Uppgift 1 - Vecka 35</a>. Sedan:<br>
+      <br>
+      <pre><b>git init</b>             när jag är i TDP004 katalogen</pre><br>
+      <br>
+      Sedan:<br>
+      <br>
+      <pre><b>git remote add origin git@gitlab.liu.se:saysa289/tdp004.git</b></pre><br>
+      <br>
+      Nu för att spara commitar man:<br>
+      <br>
+      <pre><b>git commit -m &#34;Added everything&#34;</b></pre><br>
+      <br>
+      Nu för att pusha hela innehållet i TDP004 katalogen till git:<br>
+      <br>
+      <pre><b>git push -u origin master</b></pre><br>
+      <p style="text-align:center"> -----------------------------------------------------------</p>
+      <h4>Jobba via ssh</h4>
+      För att ansluta till mitt konto på student-domänen:
+      <pre><b>ssh saysa289@ssh.edu.liu.se</b></pre>
+      Jag satte upp katalogen som är kopplade till git-repot:
+      <br>
+      <pre><b>git clone git@gitlab.liu.se:saysa289/tdp004.git</b></pre>
+      Nu för att skapa katalogen .../TDP004/lab2/dokumentation utan att fört skapa lab2:<br>
+      <br>
+      <pre><b>mkdir -p lab2/dokumentation</b>              när jag är i TDP004 katalogen</pre><br>
+      Sedan skrev jag följande kommando för att skapa filerna och i slutet för att Git ska ignorera onödiga filer skapar man en git-ignore fil:
+      <br><pre><b>cd lab1</b><br>För att skapa lab1.cc filen i lab1 mappen:<br><b>touch lab1.cc</b></pre>
+      <br><pre>För att skapa lab2.cc och lab2.h i lab1 mappen:<br><b>touch lab2.cc lab2.h</b></pre>
+      <br><pre>För att flytta filerna till mappen lab2:<br><b>mv lab2.cc lab2.h /wwwpub/saysa289/TDP004/lab2</b>.
+	<br><b>cd ..</b> för att gå en mapp tillbaka
+	<br><b>nano README.md (Jag änvande nano text-editorn för att göra ändringar i filen här)</b>
+	<br>Sedan:
+	<br><b>touch junk.temp</b> för att skapa junk.temp filen.
+	<br><b>touch .git-ignore</b>  för att skapa .git-ignore filen.
+	<br><b>nano .git-ignore</b> för att öppna <i>git-ignore</i> filen och sedan göra följande ändringar i den.
+	<br><b>(Lägger till &#39;~&#39; och &#39;.temp&#39;)</b>
+	<br>Sedan:
+	<br><b>git add .</b> för att adda alla ändringarna.
+	<br>Nu för att spara alla ändringarna commitade jag: <b>git commit -am &#34;comment&#34;</b>
+	<br>Sedan knuffade allt till Git: <b>git push -u origin master</b></pre><br>
+      <p style="text-align:center"> -----------------------------------------------------------</p>
+      <h4>Lösa en konflikt</h4>
+      <pre><b>ctrl+d</b> för att gå tillbaka till mitt eget system.</pre>
+      <br><pre><b>emacs README.md</b></pre> för att öppna med emacs.
+      Ändrade README.md filen, sedan pullar man med följande:
+      <br><pre><b>git pull</b></pre>
+      <br>En merge-conflict inträffar när Git inte förstår skillnaderna mellan två commit.
+      <br>När jag fick en merge-conflict så anledningen till det var att <i>README.md</i> filen på servern och i det lokala var inte lika. Det var för att jag hade redan ändrat <i>README.md</i> filen på servern innan och hade pushat den till Git, och nu när jag ändrar <i>README.md</i> filen i det lokala systemet och pullar från Git så hände det merge-conflict. För att fixa merge-conflictet så öppnade jag filen med text editor och tog bort det onödiga texter som var highlightad och sparade filen. 
+      <p style="text-align:center"> -----------------------------------------------------------</p>
+      <h4>Rättigheter och skriva till fil</h4>
+      <pre><b>cd ~TDP004/  --&gt;  touch test.py</b></pre>
+      <br>Öppnar filen med emacs och sedan skriver <em>&#34;#!/usr/bin/env python3&#34;</em> i början för att göra det körbart, sedan:
+      <br>
+      <pre><b>&#34;print(&#34;Hello world&#34;) &gt; test.py</b>      när jag är i TDP004 katalogen</pre>
+      <br><pre><b>echo &#34;Detta är en kommentar som skapats med echo&#34; &gt;&gt; test.py</b></pre>
+      <br><pre><b>cp -r lab2 ~/TDP004/lab3</b>     för att skapa lab3 och kopiera innehållet av lab2 till lab3.</pre>
+      <br><pre><b>mv lab2.cc lab3.cc  --&gt;  mv lab2.h lab3.h</b>     för att byta filnamnen.</pre>
+      <br><pre><b>scp -r saysa289@ssh.edu.liu.se:/wwwpub/saysa289/TDP004/lab1 ~/TDP004/lab4</b></pre>
+      <br>För att kopiera katalogen lab1 från mitt konto på student-domänen och ha namnet lab4 också.
+      <br><pre><b>mv lab1.cc lab4.cc</b>     för att byta filnamnet.</pre>
+      <p style="text-align:center"> -----------------------------------------------------------</p>
+      <h4>Dokumentera katalogen</h4>
+      <pre><b> tree ~/TDP004</b>    (Installerade tree först för att den ska funka)</pre>
+      <br>Sedan:
+      <br><pre><b>tree ~/TDP004 &gt;&gt; README.md</b>    För att skriva den i README.md filen.</pre>
+      <p style="text-align:center"> -----------------------------------------------------------</p>
+      <h4>Smått och gott</h4>
+      <p><pre><b>find . -type f -executable</b>    för att hitta alla körbara filer i hemkatalogen</pre>
+	<br><pre><b>find . -type f -executable -name &#34;*.py&#34;</b>    för att hitta bara körbara pythonfiler.</pre>
+	<br><pre><b>grep --exclude-dir=* &#34;#.*&#34; * .*</b>     använde både grep och regex för att begränsa sökningen till # och skrev <b>.*</b> för att specifiera dolda filer</pre>
+      <p style="text-align:center">===============================================================</p>
+      <h2 id="TDP003">Projekt: Egna datormiljön TDP003</h2>
+      <hr>
+      <footer style="text-align:center"> &copy; Ismail Safwat | Senast upddaterad 2020-10-15</footer>
+    </main>
+  </body>
+</html>
